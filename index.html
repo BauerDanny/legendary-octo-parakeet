@@ -68,7 +68,7 @@
             <p class="hero-description">A cozy place to play, make friends<br class="desktop-break"> and enjoy the adventure!</p>
             <div class="floral-divider" aria-hidden="true"><span></span><img class="divider-flower" src="./Flower.png" alt="" draggable="false"><span></span></div>
             <div class="hero-actions">
-              <button class="image-button" type="button" data-copy-ip="play.blossomvale.world" aria-label="Copy server IP play.blossomvale.world"><img src="./PlayNowIP.png" alt="" draggable="false"></button>
+              <button class="image-button" type="button" data-open="play" aria-label="Play Now"><img src="./PlayNow.png" alt="" draggable="false"></button>
               <a class="image-button discord-hero-button" href="https://discord.gg/QwyAjpg9bu" target="_blank" rel="noopener noreferrer" aria-label="Join Discord"><img src="./Discord.png" alt="" draggable="false"></a>
             </div>
           </div>
@@ -107,6 +107,8 @@
     <span class="dialog-flower" aria-hidden="true">✿</span>
     <h2 id="dialog-title">A little patience, please!</h2>
     <p id="dialog-message"></p>
+    <button class="text-button copy-ip-button" type="button">Copy to Clipboard</button>
+    <p class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></p>
     <button class="text-button dialog-ok" type="button">Sounds good</button>
   </dialog>
 </body>
