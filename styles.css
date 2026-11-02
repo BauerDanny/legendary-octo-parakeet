@@ -117,7 +117,7 @@ button,a{font:inherit}button{color:inherit}
   pointer-events:none!important;
 }
 @media(max-width:620px){.admin-shell{width:calc(100% - 30px);padding-top:20px}.admin-header p{font-size:.75rem}.admin-card{padding:26px 20px}}
-
+.notice-dialog .copy-feedback{min-height:1.2em;margin:-10px auto 12px;color:#e4ffc7;font-size:.7rem}
 
 
 
