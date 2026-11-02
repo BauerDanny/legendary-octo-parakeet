@@ -82,7 +82,7 @@ copyIpButton?.addEventListener("click", async () => {
     if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(serverIp);
     else if (!copyTextFallback(serverIp)) throw new Error("Clipboard access is unavailable.");
     copyIpButton.textContent = "Copied!";
-    copyFeedback.textContent = "Paste the IP into Minecraft to join.";
+    copyFeedback.textContent = " ";
   } catch {
     copyFeedback.textContent = "Copy didn’t work automatically. Select the IP above and copy it.";
   }
