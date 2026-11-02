@@ -38,8 +38,12 @@ if (restartCounter) window.setInterval(updateRestartTime, 60000);
 const dialog = document.querySelector(".notice-dialog");
 const dialogTitle = document.querySelector("#dialog-title");
 const dialogMessage = document.querySelector("#dialog-message");
+const copyIpButton = document.querySelector(".copy-ip-button");
+const copyFeedback = document.querySelector("#copy-feedback");
+const serverIp = "play.blossomvale.world";
 
 const notices = {
+  play: { title: "Join Blossom Vale", message: `Server IP: ${serverIp}` },
   discord: { title: "Our community is growing!", message: "The Discord invite is being prepared. Check back soon for the community link." }
 };
 
@@ -47,7 +51,22 @@ const showNotice = (title, message) => {
   if (!dialog) return;
   dialogTitle.textContent = title;
   dialogMessage.textContent = message;
+  if (copyFeedback) copyFeedback.textContent = "";
+  if (copyIpButton) copyIpButton.textContent = "Copy to Clipboard";
   dialog.showModal();
+};
+
+const copyTextFallback = (text) => {
+  const field = document.createElement("textarea");
+  field.value = text;
+  field.setAttribute("readonly", "");
+  field.style.position = "fixed";
+  field.style.opacity = "0";
+  document.body.append(field);
+  field.select();
+  const copied = document.execCommand("copy");
+  field.remove();
+  return copied;
 };
 
 document.querySelectorAll("[data-open]").forEach((button) => {
@@ -58,14 +77,14 @@ document.querySelectorAll("[data-open]").forEach((button) => {
   });
 });
 
-document.querySelector("[data-copy-ip]")?.addEventListener("click", async (event) => {
-  const address = event.currentTarget.dataset.copyIp;
+copyIpButton?.addEventListener("click", async () => {
   try {
-    if (!navigator.clipboard?.writeText) throw new Error("Clipboard access is unavailable.");
-    await navigator.clipboard.writeText(address);
-    showNotice("IP copied!", "Paste play.blossomvale.world into Minecraft to join the server.");
+    if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(serverIp);
+    else if (!copyTextFallback(serverIp)) throw new Error("Clipboard access is unavailable.");
+    copyIpButton.textContent = "Copied!";
+    copyFeedback.textContent = "Paste the IP into Minecraft to join.";
   } catch {
-    showNotice("Join Blossom Vale", `Server IP: ${address}`);
+    copyFeedback.textContent = "Copy didn’t work automatically. Select the IP above and copy it.";
   }
 });
 
